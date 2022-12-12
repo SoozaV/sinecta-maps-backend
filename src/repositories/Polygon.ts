@@ -1,4 +1,4 @@
-import { sequelize } from "../database/database";
+import sequelize from "../database/database";
 import PolygonModel from "../models/Polygon";
 import GeoJSON from "geojson";
 
