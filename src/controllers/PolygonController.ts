@@ -2,10 +2,10 @@ import {
   Request as ExpressRequest,
   Response as ExpressResponse,
 } from "express";
-import Polygon from "../repositories/Polygon";
+import {Polygon} from "../repositories";
 import Response from "../services/Response";
 
-export default class PolygonController {
+export class PolygonController {
   static async addPolygon(req: ExpressRequest, res: ExpressResponse) {
     let response = new Response();
     try {

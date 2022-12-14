@@ -1,8 +1,8 @@
-import sequelize from "../database/database";
-import PolygonModel from "../models/Polygon";
+import { sequelize } from "../database";
+import { PolygonModel } from "../models";
 import GeoJSON from "geojson";
 
-export default class Polygon {
+export class Polygon {
   static async addPolygon(polygon: GeoJSON.Feature<GeoJSON.Polygon>) {
     const data = await PolygonModel.create({
       id: polygon.id,

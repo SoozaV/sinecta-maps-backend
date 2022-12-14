@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../database/database";
+import { sequelize } from "../database";
 
-const Polygon = sequelize.define(
+export const PolygonModel = sequelize.define(
   "polygon",
   {
     /*id: {
@@ -40,5 +40,3 @@ const Polygon = sequelize.define(
     },
   }
 );
-
-export default Polygon;

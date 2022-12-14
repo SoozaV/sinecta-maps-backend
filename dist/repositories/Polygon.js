@@ -8,17 +8,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const database_1 = __importDefault(require("../database/database"));
-const Polygon_1 = __importDefault(require("../models/Polygon"));
+exports.Polygon = void 0;
+const database_1 = require("../database");
+const models_1 = require("../models");
 class Polygon {
     static addPolygon(polygon) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function* () {
-            const data = yield Polygon_1.default.create({
+            const data = yield models_1.PolygonModel.create({
                 id: polygon.id,
                 name: ((_a = polygon.properties) === null || _a === void 0 ? void 0 : _a.name) || "",
                 area: ((_b = polygon.properties) === null || _b === void 0 ? void 0 : _b.area) || 0,
@@ -46,18 +44,18 @@ class Polygon {
                         )
                     FROM 
                         polygons AS t;`;
-            const data = yield database_1.default.query(query);
+            const data = yield database_1.sequelize.query(query);
             return data;
         });
     }
     static deletePolygon(polygonId) {
         return __awaiter(this, void 0, void 0, function* () {
-            const data = yield Polygon_1.default.destroy({
+            const data = yield models_1.PolygonModel.destroy({
                 where: { id: polygonId },
             });
             return data;
         });
     }
 }
-exports.default = Polygon;
+exports.Polygon = Polygon;
 //# sourceMappingURL=Polygon.js.map

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import PolygonController from "../controllers/PolygonController";
+import { PolygonController } from "../controllers";
 const router = Router();
 
 router.post("/polygons", PolygonController.addPolygon);

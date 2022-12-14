@@ -1,19 +1,13 @@
-import dotenv from "dotenv";
 import { Sequelize } from "sequelize";
-import { cleanEnv, str } from "envalid";
- 
-dotenv.config();
+require("dotenv").config();
 
-const env = cleanEnv(process.env, {
-  DB_USER: str(),
-  DB_PASS: str(), 
-  DB_DATABASE: str(),
-  DB_HOST: str(),
-});
+const DB_DATABASE = process.env.DB_DATABASE as string;
+const DB_USER = process.env.DB_USER as string;
+const DB_PASS = process.env.DB_PASS as string;
+const DB_HOST = process.env.DB_HOST as string;
 
-const sequelize = new Sequelize(env.DB_DATABASE, env.DB_USER, env.DB_PASS, {
-  host: env.DB_HOST,
+export const sequelize = new Sequelize(DB_DATABASE, DB_USER, DB_PASS, {
+  host: DB_HOST,
   dialect: "postgres",
   port: 5432,
 });
-export default sequelize;

@@ -1,0 +1,1 @@
+export { PolygonModel } from "./Polygon"

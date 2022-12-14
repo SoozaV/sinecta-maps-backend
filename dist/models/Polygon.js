@@ -1,11 +1,9 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.PolygonModel = void 0;
 const sequelize_1 = require("sequelize");
-const database_1 = __importDefault(require("../database/database"));
-const Polygon = database_1.default.define("polygon", {
+const database_1 = require("../database");
+exports.PolygonModel = database_1.sequelize.define("polygon", {
     /*id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -40,5 +38,4 @@ const Polygon = database_1.default.define("polygon", {
         },
     },
 });
-exports.default = Polygon;
 //# sourceMappingURL=Polygon.js.map
