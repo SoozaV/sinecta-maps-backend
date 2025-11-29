@@ -1,21 +1,22 @@
-# sinecta-maps-backend
-Backend for Sinecta Maps App (Fastify, Sequelize, PostgreSQL, PostGIS)
+# 🗺️ Sinecta Maps Backend
 
-## Stack Tecnológico
+REST API for geographic polygon management with Fastify, PostgreSQL + PostGIS, and TypeScript.
+
+## ⚡ Tech Stack
 
 - **Framework**: Fastify 5.6.2
 - **ORM**: Sequelize 6.27.0
-- **Base de Datos**: PostgreSQL con extensión PostGIS
-- **Lenguaje**: TypeScript 5.3.3
-- **Documentación**: Swagger/OpenAPI (disponible en `/docs`)
+- **Database**: PostgreSQL with PostGIS extension
+- **Language**: TypeScript 5.3.3
+- **Documentation**: Swagger/OpenAPI (available at `/docs`)
 
-## Características
+## ✨ Features
 
-- ✅ API REST para gestión de polígonos geográficos
-- ✅ Optimizado para performance (pool de conexiones, índices espaciales)
-- ✅ Validación de entrada con JSON Schema
-- ✅ Protección contra abuso (rate limiting, API key)
-- ✅ TypeScript con tipos estrictos
+- ✅ REST API for geographic polygon management
+- ✅ Optimized for performance (connection pooling, spatial indexes)
+- ✅ Input validation with JSON Schema (TypeBox)
+- ✅ Abuse protection (rate limiting, API key)
+- ✅ Strict TypeScript types
 
 ### API Protection
 
@@ -29,20 +30,20 @@ This API is protected with:
 
 For portfolio/demo purposes, API key is available in environment variables.
 
-## Documentación
+## 📖 Documentation
 
-La API incluye documentación interactiva generada automáticamente con Swagger/OpenAPI:
+The API includes interactive auto-generated documentation with Swagger/OpenAPI:
 
 - **Swagger UI**: `http://localhost:3000/docs`
 - **OpenAPI JSON**: `http://localhost:3000/docs/json`
 
-Puedes probar los endpoints directamente desde la interfaz de Swagger.
+You can test endpoints directly from the Swagger interface.
 
-## Configuración
+## ⚙️ Configuration
 
-### Variables de Entorno
+### Environment Variables
 
-Copia `.env.example` a `.env` y configura las siguientes variables:
+Copy `.env.example` to `.env` and configure the following variables:
 
 ```env
 # Database
@@ -65,57 +66,63 @@ RATE_LIMIT_MAX=100
 RATE_LIMIT_WINDOW=60000
 ```
 
-## Instalación
+## 🚀 Quick Start
 
 ```bash
+# Install dependencies
 npm install
-```
 
-## Desarrollo
+# Configure environment variables
+cp .env.example .env
 
-```bash
+# Start development server
 npm start
-```
 
-## Build
-
-```bash
+# Build for production
 npm run build
 ```
 
-## Endpoints
+## 🔌 Endpoints
 
 - `GET /` - Health check
 - `GET /ping` - Ping endpoint
-- `GET /docs` - Documentación interactiva de la API (Swagger UI)
-- `GET /api/polygons` - Obtener todos los polígonos (máximo 100)
-- `POST /api/polygons` - Crear nuevo polígono (requiere API key)
-- `DELETE /api/polygons/:id` - Eliminar polígono por ID (requiere API key)
+- `GET /docs` - Interactive API documentation (Swagger UI)
+- `GET /api/polygons` - Get all polygons (max 100)
+- `POST /api/polygons` - Create new polygon (requires API key)
+- `DELETE /api/polygons/:id` - Delete polygon by ID (requires API key)
 
-## Estructura del Proyecto
+## 📁 Project Structure
 
 ```
 src/
-├── routes/          # Rutas HTTP (handlers Fastify)
-├── repositories/    # Lógica de acceso a datos
-├── models/          # Modelos Sequelize
-├── services/        # Servicios auxiliares (Response, etc.)
-├── middleware/      # Middleware personalizado (API key, etc.)
-├── database/        # Configuración de BD y migraciones
-└── utils/           # Utilidades y errores personalizados
+├── routes/          # HTTP routes (Fastify handlers)
+├── repositories/    # Data access logic
+├── models/          # Sequelize models
+├── services/        # Helper services (Response, etc.)
+├── middleware/      # Custom middleware (API key, etc.)
+├── database/        # DB config and migrations
+└── utils/           # Utilities and custom errors
 ```
 
-## Performance
+## ⚡ Performance
 
-- Pool de conexiones configurado (max: 10, min: 2)
-- Índices espaciales GiST para consultas geoespaciales rápidas
-- Validación previa de entrada para evitar procesamiento innecesario
-- Optimizado para respuesta < 2 segundos en POST requests
+- Connection pooling configured (max: 10, min: 2)
+- GiST spatial indexes for fast geospatial queries
+- Input validation before processing
+- Optimized for <2s response time on POST requests
 
-## Deployment
+## 🚀 Deployment
 
-Este backend está diseñado para desplegarse en plataformas como Render, Railway, o Fly.io, conectado a Supabase o Neon para PostgreSQL + PostGIS.
+Designed to deploy on platforms like Render, Railway, or Fly.io, connected to Supabase or Neon for PostgreSQL + PostGIS.
 
-## Licencia
+## 💡 Credits
+
+Inspired by [test-nsi](https://github.com/wahyuade/test-nsi), evolved with a completely different tech stack (Fastify, TypeBox, Swagger, etc.).
+
+## 📝 License
 
 ISC
+
+---
+
+Built with ❤️ using Fastify, TypeScript, and PostgreSQL
