@@ -55,6 +55,10 @@ export const PolygonModel = sequelize.define<Model<PolygonAttributes, PolygonCre
   },
   {
     tableName: 'polygons',
+    // Usar timestamps y mapear a snake_case en la base de datos
+    timestamps: true,
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
     hooks: {
       beforeSave: (polygon: any) => {
         // Ensure CRS is set for PostGIS compatibility

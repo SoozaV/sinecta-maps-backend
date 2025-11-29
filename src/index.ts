@@ -19,7 +19,14 @@ async function main() {
       port: Number(port), 
       host: '0.0.0.0' 
     });
-    console.log(`Server listening on port ${port}`);
+
+    const baseUrl =
+      process.env.API_URL ||
+      (process.env.NODE_ENV === 'production'
+        ? `https://your-render-service-url.onrender.com`
+        : `http://localhost:${port}`);
+
+    console.log(`Backend ready at ${baseUrl} (env: ${process.env.NODE_ENV || 'development'})`);
   } catch (error) {
     console.error('Error starting server:', error);
     process.exit(1);

@@ -85,6 +85,17 @@ export class Polygon {
         if (!featureCollection.features || !Array.isArray(featureCollection.features)) {
           featureCollection.features = [];
         }
+
+        // PostGIS ST_AsGeoJSON coloca las columnas no geométricas en "properties"
+        // pero no siempre rellena el campo "id" a nivel de Feature.
+        // Para cumplir con el schema (id requerido), copiamos properties.id si falta.
+        featureCollection.features = featureCollection.features.map((feature: any) => {
+          if (!feature.id && feature.properties?.id) {
+            feature.id = String(feature.properties.id);
+          }
+          return feature;
+        });
+
         return featureCollection;
       }
       
