@@ -21,17 +21,23 @@ async function buildApp() {
     },
   }).withTypeProvider<TypeBoxTypeProvider>();
 
-  // Rate limiting global
+  // Rate limiting global (usando variables de entorno con defaults seguros)
+  const globalRateLimitMax = Number(process.env.RATE_LIMIT_MAX ?? 100);
+  const globalRateLimitWindowEnv = process.env.RATE_LIMIT_WINDOW ?? '1 minute';
+  const globalRateLimitWindow = isNaN(Number(globalRateLimitWindowEnv))
+    ? globalRateLimitWindowEnv
+    : Number(globalRateLimitWindowEnv);
+
   await fastify.register(rateLimit, {
-    max: 100,
-    timeWindow: '1 minute',
+    max: globalRateLimitMax,
+    timeWindow: globalRateLimitWindow,
     keyGenerator: (request) => request.ip
   });
 
   // CORS
   await fastify.register(cors, {
     origin: [
-      process.env.FRONTEND_URL || 'http://localhost:3000'
+      process.env.FRONTEND_URL || 'http://localhost:5173'
     ],
     credentials: true,
     methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],

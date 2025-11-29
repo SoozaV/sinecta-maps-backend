@@ -20,12 +20,7 @@ async function main() {
       host: '0.0.0.0' 
     });
 
-    const baseUrl =
-      process.env.API_URL ||
-      (process.env.NODE_ENV === 'production'
-        ? `https://your-render-service-url.onrender.com`
-        : `http://localhost:${port}`);
-
+    const baseUrl = process.env.API_URL || `http://localhost:${port}`;
     console.log(`Backend ready at ${baseUrl} (env: ${process.env.NODE_ENV || 'development'})`);
   } catch (error) {
     console.error('Error starting server:', error);
