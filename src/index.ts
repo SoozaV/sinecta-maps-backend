@@ -1,18 +1,28 @@
-import app from "./app";
+import buildApp from "./app";
 import { sequelize } from "./database/database";
+import { createSpatialIndex } from "./database/migrations/001-create-spatial-index";
 require("dotenv").config();
 
 const port = process.env.PORT || 3000;
 
 async function main() {
   try {
-    await sequelize.sync({ force: false });
+    await sequelize.authenticate(); // Solo verificar conexión
+    console.log('Database connection established');
+    
+    // Crear índice espacial si no existe
+    await createSpatialIndex();
 
-    app.listen(port, () => {
-      console.log(`Server listening on port ${port}`);
+    const fastify = await buildApp();
+    
+    await fastify.listen({ 
+      port: Number(port), 
+      host: '0.0.0.0' 
     });
+    console.log(`Server listening on port ${port}`);
   } catch (error) {
-    console.log(error);
+    console.error('Error starting server:', error);
+    process.exit(1);
   }
 }
 

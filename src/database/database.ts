@@ -10,4 +10,11 @@ export const sequelize = new Sequelize(DB_DATABASE, DB_USER, DB_PASS, {
   host: DB_HOST,
   dialect: "postgres",
   port: 5432,
+  pool: {
+    max: 10,
+    min: 2,
+    acquire: 30000,
+    idle: 10000,
+  },
+  logging: false,
 });
